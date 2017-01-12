@@ -57,13 +57,13 @@
 }
 
 #pragma mark └ Input data
--(void)sendData:(NSData *)data reliably:(BOOL)reliable immediately:(BOOL)immediately {
+-(void)sendData:(NSData *)data from:(NSString*)sender to:(NSArray<NSString*>*)recipients reliably:(BOOL)reliable immediately:(BOOL)immediately {
 
     void (^send)(void) = ^{
         if (reliable) {
             [self scheduleAckTimer];
         }
-        [self input_sendData:data reliably:reliable immediately:immediately];
+        [self input_sendData:data from:sender to:recipients reliably:reliable immediately:immediately];
     };
     
     if (immediately) {
@@ -129,14 +129,14 @@
 }
 
 #pragma mark Sending
--(void)input_sendData:(NSData *)data reliably:(BOOL)reliable immediately:(BOOL)immediately {
+-(void)input_sendData:(NSData *)data from:(NSString*)sender to:(NSArray<NSString*>*)recipients reliably:(BOOL)reliable immediately:(BOOL)immediately {
     if (UINT32_MAX == _sndNextTSN) {
         ROUThrow(@"RoUTP currently supports only sessions no longer than %lu packets.",
                  NSUIntegerMax);
     }
     if (reliable) {
         uint32_t tsn = _sndNextTSN++;
-        ROUSndDataChunk *chunk = [ROUSndDataChunk chunkWithData:data TSN:tsn];
+        ROUSndDataChunk *chunk = [ROUSndDataChunk chunkWithData:data TSN:tsn sender:sender recipients:recipients];
         
         [self addSndDataChunk:chunk];
         chunk.lastSendDate = [NSDate date];
@@ -146,7 +146,7 @@
 
     else {
         //Bypass reliability checks
-        ROUSndDataChunk *chunk = [ROUSndDataChunk unreliableChunkWithData:data];
+        ROUSndDataChunk *chunk = [ROUSndDataChunk unreliableChunkWithData:data sender:sender recipients:recipients];
         [self sendChunkToTransport:chunk immediately:immediately];
     }
 

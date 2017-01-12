@@ -28,13 +28,13 @@ typedef struct {
     uint8_t type;
     uint8_t flags;
     char sender[ROU_PLAYER_SIZE];
+    char receiver0[ROU_PLAYER_SIZE];
     char receiver1[ROU_PLAYER_SIZE];
     char receiver2[ROU_PLAYER_SIZE];
-    char receiver3[ROU_PLAYER_SIZE];
     uint16_t length;
 } ROUChunkHeader;
 
-ROUChunkHeader ROUChunkHeaderMake(ROUChunkType type, uint8_t flags, uint16_t length);
+ROUChunkHeader ROUChunkHeaderMake(ROUChunkType type, uint8_t flags, uint16_t length, NSString *sender, NSArray<NSString*> *recipients);
 ROUChunkHeader ROUChunkHeaderAddFlag(ROUChunkHeader header, uint8_t flag);
 
 typedef struct {
@@ -60,8 +60,8 @@ bool ROUAckSegmentShiftsEqual(ROUAckSegmentShift segmentShift1,
 /**
  @param tsn Transmission Sequence Number
  */
-+(id)chunkWithData:(NSData *)data TSN:(uint32_t)tsn;
-+(id)unreliableChunkWithData:(NSData *)data;
++(id)chunkWithData:(NSData *)data TSN:(uint32_t)tsn sender:(NSString*)sender recipients:(NSArray<NSString*>*)recipients;
++(id)unreliableChunkWithData:(NSData *)data sender:(NSString*)sender recipients:(NSArray<NSString*>*)recipients;
 @property (nonatomic,readonly) uint32_t tsn;
 @property (nonatomic,readonly) NSData *data;
 @end

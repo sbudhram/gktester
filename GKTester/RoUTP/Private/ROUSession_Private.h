@@ -16,7 +16,7 @@
 #define ROU_RCV_ACK_TIMER_DELAY_ON_MISSED 0.3f
 
 @interface ROUSession ()
--(void)input_sendData:(NSData *)data reliably:(BOOL)reliable immediately:(BOOL)immediate;
+-(void)input_sendData:(NSData *)data from:(NSString*)sender to:(NSArray<NSString*>*)recipients reliably:(BOOL)reliable immediately:(BOOL)immediately;
 -(void)input_receiveData:(NSData *)data;
 -(void)sendChunkToTransport:(ROUChunk *)chunk;
 -(void)informDelegateOnReceivedChunk:(ROUDataChunk *)chunk;

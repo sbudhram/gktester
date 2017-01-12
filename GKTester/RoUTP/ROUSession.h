@@ -22,7 +22,7 @@
  session earlier.
  */
 -(void)start;
--(void)sendData:(NSData *)data reliably:(BOOL)reliable immediately:(BOOL)immediately;
+-(void)sendData:(NSData *)data from:(NSString*)sender to:(NSArray<NSString*>*)recipients reliably:(BOOL)reliable immediately:(BOOL)immediately;
 -(void)receiveData:(NSData *)data;
 -(void)setDelegate:(id<ROUSessionDelegate>)delegate;
 -(void)end;
