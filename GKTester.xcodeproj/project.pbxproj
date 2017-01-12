@@ -18,6 +18,7 @@
 		14DEA7291E2764F50022527B /* ROUDataTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DEA7241E2764F50022527B /* ROUDataTypes.m */; };
 		14DEA72A1E2764F50022527B /* ROUSerialQueueTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DEA7271E2764F50022527B /* ROUSerialQueueTimer.m */; };
 		14DEA72D1E2765060022527B /* ROUSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DEA72C1E2765060022527B /* ROUSession.m */; };
+		14DEA7321E27870A0022527B /* ROUSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DEA7311E27870A0022527B /* ROUSessionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		14DEA7281E2764F50022527B /* ROUSession_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ROUSession_Private.h; path = RoUTP/Private/ROUSession_Private.h; sourceTree = "<group>"; };
 		14DEA72B1E2765060022527B /* ROUSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ROUSession.h; path = RoUTP/ROUSession.h; sourceTree = "<group>"; };
 		14DEA72C1E2765060022527B /* ROUSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ROUSession.m; path = RoUTP/ROUSession.m; sourceTree = "<group>"; };
+		14DEA7301E27870A0022527B /* ROUSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ROUSessionManager.h; path = RoUTP/ROUSessionManager.h; sourceTree = "<group>"; };
+		14DEA7311E27870A0022527B /* ROUSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ROUSessionManager.m; path = RoUTP/ROUSessionManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 			children = (
 				14DEA72B1E2765060022527B /* ROUSession.h */,
 				14DEA72C1E2765060022527B /* ROUSession.m */,
+				14DEA7301E27870A0022527B /* ROUSessionManager.h */,
+				14DEA7311E27870A0022527B /* ROUSessionManager.m */,
 				14DEA72F1E2765370022527B /* Private */,
 			);
 			name = ROUTP;
@@ -218,6 +223,7 @@
 				14C8A30E1E1BACB200E4055D /* ViewController.m in Sources */,
 				14C8A30B1E1BACB200E4055D /* AppDelegate.m in Sources */,
 				14DEA7291E2764F50022527B /* ROUDataTypes.m in Sources */,
+				14DEA7321E27870A0022527B /* ROUSessionManager.m in Sources */,
 				14DEA72D1E2765060022527B /* ROUSession.m in Sources */,
 				14DEA72A1E2764F50022527B /* ROUSerialQueueTimer.m in Sources */,
 				14C8A3081E1BACB200E4055D /* main.m in Sources */,
