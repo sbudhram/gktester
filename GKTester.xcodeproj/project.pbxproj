@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14ABAE491E1BAF240018FFE1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14ABAE481E1BAF240018FFE1 /* GameKit.framework */; };
+		14ABAE4B1E1BB0AF0018FFE1 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14ABAE4A1E1BB0AF0018FFE1 /* CloudKit.framework */; };
 		14C8A3081E1BACB200E4055D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C8A3071E1BACB200E4055D /* main.m */; };
 		14C8A30B1E1BACB200E4055D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C8A30A1E1BACB200E4055D /* AppDelegate.m */; };
 		14C8A30E1E1BACB200E4055D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C8A30D1E1BACB200E4055D /* ViewController.m */; };
 		14C8A3111E1BACB200E4055D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C8A30F1E1BACB200E4055D /* Main.storyboard */; };
 		14C8A3131E1BACB200E4055D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C8A3121E1BACB200E4055D /* Assets.xcassets */; };
 		14C8A3161E1BACB200E4055D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C8A3141E1BACB200E4055D /* LaunchScreen.storyboard */; };
+		14DEA7291E2764F50022527B /* ROUDataTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DEA7241E2764F50022527B /* ROUDataTypes.m */; };
+		14DEA72A1E2764F50022527B /* ROUSerialQueueTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DEA7271E2764F50022527B /* ROUSerialQueueTimer.m */; };
+		14DEA72D1E2765060022527B /* ROUSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DEA72C1E2765060022527B /* ROUSession.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14ABAE451E1BAE380018FFE1 /* GKTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GKTester.entitlements; sourceTree = "<group>"; };
+		14ABAE481E1BAF240018FFE1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		14ABAE4A1E1BB0AF0018FFE1 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		14C8A3031E1BACB200E4055D /* GKTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C8A3071E1BACB200E4055D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14C8A3091E1BACB200E4055D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +34,14 @@
 		14C8A3121E1BACB200E4055D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C8A3151E1BACB200E4055D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14C8A3171E1BACB200E4055D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14DEA7231E2764F50022527B /* ROUDataTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ROUDataTypes.h; path = RoUTP/Private/ROUDataTypes.h; sourceTree = "<group>"; };
+		14DEA7241E2764F50022527B /* ROUDataTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ROUDataTypes.m; path = RoUTP/Private/ROUDataTypes.m; sourceTree = "<group>"; };
+		14DEA7251E2764F50022527B /* ROUPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ROUPrivate.h; path = RoUTP/Private/ROUPrivate.h; sourceTree = "<group>"; };
+		14DEA7261E2764F50022527B /* ROUSerialQueueTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ROUSerialQueueTimer.h; path = RoUTP/Private/ROUSerialQueueTimer.h; sourceTree = "<group>"; };
+		14DEA7271E2764F50022527B /* ROUSerialQueueTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ROUSerialQueueTimer.m; path = RoUTP/Private/ROUSerialQueueTimer.m; sourceTree = "<group>"; };
+		14DEA7281E2764F50022527B /* ROUSession_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ROUSession_Private.h; path = RoUTP/Private/ROUSession_Private.h; sourceTree = "<group>"; };
+		14DEA72B1E2765060022527B /* ROUSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ROUSession.h; path = RoUTP/ROUSession.h; sourceTree = "<group>"; };
+		14DEA72C1E2765060022527B /* ROUSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ROUSession.m; path = RoUTP/ROUSession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +49,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14ABAE491E1BAF240018FFE1 /* GameKit.framework in Frameworks */,
+				14ABAE4B1E1BB0AF0018FFE1 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14ABAE471E1BAF240018FFE1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				14ABAE4A1E1BB0AF0018FFE1 /* CloudKit.framework */,
+				14ABAE481E1BAF240018FFE1 /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		14C8A2FA1E1BACB200E4055D = {
 			isa = PBXGroup;
 			children = (
 				14C8A3051E1BACB200E4055D /* GKTester */,
 				14C8A3041E1BACB200E4055D /* Products */,
+				14ABAE471E1BAF240018FFE1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,10 +86,12 @@
 		14C8A3051E1BACB200E4055D /* GKTester */ = {
 			isa = PBXGroup;
 			children = (
+				14ABAE451E1BAE380018FFE1 /* GKTester.entitlements */,
 				14C8A3091E1BACB200E4055D /* AppDelegate.h */,
 				14C8A30A1E1BACB200E4055D /* AppDelegate.m */,
 				14C8A30C1E1BACB200E4055D /* ViewController.h */,
 				14C8A30D1E1BACB200E4055D /* ViewController.m */,
+				14DEA72E1E2765210022527B /* ROUTP */,
 				14C8A30F1E1BACB200E4055D /* Main.storyboard */,
 				14C8A3121E1BACB200E4055D /* Assets.xcassets */,
 				14C8A3141E1BACB200E4055D /* LaunchScreen.storyboard */,
@@ -77,6 +107,29 @@
 				14C8A3071E1BACB200E4055D /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14DEA72E1E2765210022527B /* ROUTP */ = {
+			isa = PBXGroup;
+			children = (
+				14DEA72B1E2765060022527B /* ROUSession.h */,
+				14DEA72C1E2765060022527B /* ROUSession.m */,
+				14DEA72F1E2765370022527B /* Private */,
+			);
+			name = ROUTP;
+			sourceTree = "<group>";
+		};
+		14DEA72F1E2765370022527B /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				14DEA7231E2764F50022527B /* ROUDataTypes.h */,
+				14DEA7241E2764F50022527B /* ROUDataTypes.m */,
+				14DEA7251E2764F50022527B /* ROUPrivate.h */,
+				14DEA7261E2764F50022527B /* ROUSerialQueueTimer.h */,
+				14DEA7271E2764F50022527B /* ROUSerialQueueTimer.m */,
+				14DEA7281E2764F50022527B /* ROUSession_Private.h */,
+			);
+			name = Private;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,7 +163,19 @@
 				TargetAttributes = {
 					14C8A3021E1BACB200E4055D = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = EXF3E75U7G;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -152,6 +217,9 @@
 			files = (
 				14C8A30E1E1BACB200E4055D /* ViewController.m in Sources */,
 				14C8A30B1E1BACB200E4055D /* AppDelegate.m in Sources */,
+				14DEA7291E2764F50022527B /* ROUDataTypes.m in Sources */,
+				14DEA72D1E2765060022527B /* ROUSession.m in Sources */,
+				14DEA72A1E2764F50022527B /* ROUSerialQueueTimer.m in Sources */,
 				14C8A3081E1BACB200E4055D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -259,7 +327,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -270,9 +338,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GKTester/GKTester.entitlements;
+				DEVELOPMENT_TEAM = EXF3E75U7G;
 				INFOPLIST_FILE = GKTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Self.GKTester;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bubblecapappsllc.gktester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -281,9 +351,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GKTester/GKTester.entitlements;
+				DEVELOPMENT_TEAM = EXF3E75U7G;
 				INFOPLIST_FILE = GKTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Self.GKTester;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bubblecapappsllc.gktester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -307,6 +379,7 @@
 				14C8A31C1E1BACB200E4055D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
