@@ -17,6 +17,9 @@
 //Use to process the final data received from the sender, after ROUSessionManager has processed it.
 - (void)manager:(GKManager *)manager didSignInPlayer:(GKCloudPlayer *)player;
 - (void)manager:(GKManager *)manager didLoadSessions:(NSArray <GKGameSession*> *)sessions;
+- (void)manager:(GKManager *)manager session:(GKGameSession*)session didAddPlayer:(GKCloudPlayer*)player;
+- (void)manager:(GKManager *)manager session:(GKGameSession*)session didRemovePlayer:(GKCloudPlayer*)player;
+- (void)manager:(GKManager *)manager session:(GKGameSession*)session player:(GKCloudPlayer*)player changedConnectionState:(GKConnectionState)state;
 
 @end
 
@@ -30,6 +33,7 @@
 - (void)addObserver:(id<GKManagerDelegate>)observer;
 - (void)removeObserver:(id<GKManagerDelegate>)observer;
 
+- (void)reloadSessions;
 - (void)createNewSessionWithCompletionHandler:(void(^)(GKGameSession *session, NSError *error))completionHandler;
 - (void)removeSessionWithIdentifier:(NSString*)identifier withCompletionHandler:(void(^)(NSError *error))completionHandler;
 @end

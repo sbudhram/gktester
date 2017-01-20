@@ -59,14 +59,12 @@ static GKManager *sharedManager = NULL;
                                                   }
                                               }
                                           }];
-        [self _reloadSessions];
-        
         
     }
     return self;
 }
 
-- (void)_reloadSessions {
+- (void)reloadSessions {
     
     [GKGameSession loadSessionsInContainer:nil completionHandler:^(NSArray<GKGameSession *> * _Nullable sessions, NSError * _Nullable error) {
         if (error) {
@@ -111,7 +109,7 @@ static GKManager *sharedManager = NULL;
                                   }
                                   
                                   //Reload our sessions
-                                  [self _reloadSessions];
+                                  [self reloadSessions];
                                   
                               }
                           }];
@@ -124,7 +122,6 @@ static GKManager *sharedManager = NULL;
             if (completionHandler) {
                 completionHandler(error);
             }
-            [self _reloadSessions];
         }
     }];
 
@@ -137,11 +134,26 @@ static GKManager *sharedManager = NULL;
 - (void)session:(GKGameSession *)session
    didAddPlayer:(GKCloudPlayer *)player {
     NSLog(@"GAME: Player added: %@  to session: %@", player.displayName, session.identifier);
+    
+    for (id<GKManagerDelegate> delegate in _delegates) {
+        if ([delegate respondsToSelector:@selector(manager:session:didAddPlayer:)])
+            [delegate manager:self session:session didAddPlayer:player];
+    }
+    
+    //Reload our sessions, since we may have been added to one.
+    [self reloadSessions];
+
 }
 
 - (void)session:(GKGameSession *)session
 didRemovePlayer:(GKCloudPlayer *)player {
     NSLog(@"GAME: Player removed: %@  from session: %@", player.displayName, session.identifier);
+
+    for (id<GKManagerDelegate> delegate in _delegates) {
+        if ([delegate respondsToSelector:@selector(manager:session:didRemovePlayer:)])
+            [delegate manager:self session:session didRemovePlayer:player];
+    }
+    
 }
 
 - (void)session:(GKGameSession *)session
@@ -149,7 +161,11 @@ didRemovePlayer:(GKCloudPlayer *)player {
 didChangeConnectionState:(GKConnectionState)newState {
     NSLog(@"GAME: Player: %@  Session: %@  Connection state changed: %d", player.description, session.identifier, (int)newState);
     NSLog(@"GAME: Active Players: %@", [session playersWithConnectionState:GKConnectionStateConnected].description);
-    
+
+    for (id<GKManagerDelegate> delegate in _delegates) {
+        if ([delegate respondsToSelector:@selector(manager:session:player:changedConnectionState:)])
+            [delegate manager:self session:session player:player changedConnectionState:newState];
+    }
 }
 
 - (void)session:(GKGameSession *)session

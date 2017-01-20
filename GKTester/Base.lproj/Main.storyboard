@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QJC-8D-dln" id="ziH-qY-L9g">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -65,7 +65,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="e4w-xT-Bpg">
-                                <rect key="frame" x="10" y="80" width="355" height="272"/>
+                                <rect key="frame" x="10" y="80" width="355" height="18251.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identifier:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nls-l0-9Ij">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="20.5"/>
@@ -85,35 +85,35 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="TIQ-Ae-vTw">
-                                        <rect key="frame" x="0.0" y="91.5" width="355" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="TIQ-Ae-vTw">
+                                        <rect key="frame" x="0.0" y="91.5" width="355" height="18000"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Arf-4c-NUq">
-                                        <rect key="frame" x="0.0" y="122" width="355" height="30"/>
-                                        <state key="normal" title="Share This URL"/>
+                                        <rect key="frame" x="0.0" y="18101.5" width="355" height="30"/>
+                                        <state key="normal" title="Get Share URL"/>
                                         <connections>
                                             <action selector="shareUrl:" destination="Xxz-sy-kHn" eventType="touchUpInside" id="H2N-gc-C5e"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0F-JR-XfM">
-                                        <rect key="frame" x="0.0" y="162" width="355" height="30"/>
+                                        <rect key="frame" x="0.0" y="18141.5" width="355" height="30"/>
                                         <state key="normal" title="Remove this Session"/>
                                         <connections>
                                             <action selector="removeSession:" destination="Xxz-sy-kHn" eventType="touchUpInside" id="ots-te-Deu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAa-Ou-i8H">
-                                        <rect key="frame" x="0.0" y="202" width="355" height="30"/>
+                                        <rect key="frame" x="0.0" y="18181.5" width="355" height="30"/>
                                         <state key="normal" title="Connect to Stream"/>
                                         <connections>
                                             <action selector="connectToStream:" destination="Xxz-sy-kHn" eventType="touchUpInside" id="N2u-9v-Gz1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oT-Ds-bAE">
-                                        <rect key="frame" x="0.0" y="242" width="355" height="30"/>
+                                        <rect key="frame" x="0.0" y="18221.5" width="355" height="30"/>
                                         <state key="normal" title="Send Packet to Connected Players"/>
                                     </button>
                                 </subviews>
@@ -131,6 +131,7 @@
                         <outlet property="connectButton" destination="IAa-Ou-i8H" id="Z5e-md-7Q8"/>
                         <outlet property="identifierLabel" destination="EaT-tH-B3F" id="sQb-Gb-jl4"/>
                         <outlet property="removeButton" destination="S0F-JR-XfM" id="IfS-7q-vSN"/>
+                        <outlet property="shareUrlButton" destination="Arf-4c-NUq" id="RJd-5i-oUB"/>
                         <outlet property="shareUrlLabel" destination="TIQ-Ae-vTw" id="hHB-Zq-rvr"/>
                     </connections>
                 </viewController>

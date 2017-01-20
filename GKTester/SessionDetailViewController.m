@@ -10,10 +10,11 @@
 #import <GameKit/GameKit.h>
 #import "GKManager.h"
 
-@interface SessionDetailViewController ()
+@interface SessionDetailViewController () <GKManagerDelegate>
 
 @property (nonatomic) IBOutlet UILabel *identifierLabel;
 @property (nonatomic) IBOutlet UILabel *shareUrlLabel;
+@property (nonatomic) IBOutlet UIButton *shareUrlButton;
 @property (nonatomic) IBOutlet UIButton *connectButton;
 @property (nonatomic) IBOutlet UIButton *removeButton;
 
@@ -32,11 +33,7 @@
     [GKGameSession loadSessionWithIdentifier:identifier completionHandler:^(GKGameSession * _Nullable session, NSError * _Nullable error) {
         _session = session;
         _identifierLabel.text = _session.identifier;
-        
-        [_session getShareURLWithCompletionHandler:^(NSURL * _Nullable url, NSError * _Nullable error) {
-            _shareUrl = url;
-            _shareUrlLabel.text = url.absoluteString;
-        }];
+        NSLog(@"Session loaded.");
         
     }];
     
@@ -45,6 +42,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[GKManager sharedManager] addObserver:self];
+    
+}
+
+- (void)dealloc {
+    [[GKManager sharedManager] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +57,15 @@
 }
 
 - (IBAction)shareUrl:(id)sender {
-    if (_shareUrl) {
+    if (!_shareUrl) {
+        _shareUrlLabel.text = @"Loading...";
+        [_session getShareURLWithCompletionHandler:^(NSURL * _Nullable url, NSError * _Nullable error) {
+            _shareUrl = url;
+            _shareUrlLabel.text = url.absoluteString;
+            [_shareUrlButton setTitle:@"Share this URL" forState:UIControlStateNormal];
+        }];
+    }
+    else {
         UIActivityViewController *actView = [[UIActivityViewController alloc] initWithActivityItems:@[_shareUrl] applicationActivities:nil];
         actView.popoverPresentationController.sourceView = self.view;
         actView.popoverPresentationController.sourceRect = CGRectMake(0, 0, 10, 10);
@@ -80,6 +92,9 @@
                 NSLog(@"Session connected.");
                 _connected = TRUE;
                 [_connectButton setTitle:@"Disconnect from Stream" forState:UIControlStateNormal];
+                
+                [self updateConnectedPlayers];
+                
             }
         }];
     }
@@ -97,6 +112,27 @@
         }];
     }
     
+}
+
+- (void)updateConnectedPlayers {
+
+    NSArray *players = [_session playersWithConnectionState:GKConnectionStateConnected];
+    NSLog(@"DetailView: Connected Players: %@", players);
+
+}
+
+- (void)manager:(GKManager *)manager session:(GKGameSession *)session didAddPlayer:(GKCloudPlayer *)player {
+    _session = session;
+    [self updateConnectedPlayers];
+}
+
+- (void)manager:(GKManager *)manager session:(GKGameSession *)session didRemovePlayer:(GKCloudPlayer *)player {
+    _session = session;
+    [self updateConnectedPlayers];
+}
+
+- (void)manager:(GKManager *)manager session:(GKGameSession *)session player:(GKCloudPlayer *)player changedConnectionState:(GKConnectionState)state {
+    [self updateConnectedPlayers];
 }
 
 /*

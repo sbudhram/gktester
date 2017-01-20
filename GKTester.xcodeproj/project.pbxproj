@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1479A5611E3096B2002D491A /* ROUTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A8CBEE1E2E03F600A03108 /* ROUTP.framework */; };
-		1479A5621E3096B2002D491A /* ROUTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14A8CBEE1E2E03F600A03108 /* ROUTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1479A5661E309B3F002D491A /* SessionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1479A5651E309B3F002D491A /* SessionTableViewController.m */; };
 		1479A5691E30A001002D491A /* GKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1479A5681E30A001002D491A /* GKManager.m */; };
 		1479A56C1E30AD6C002D491A /* SessionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1479A56B1E30AD6C002D491A /* SessionDetailViewController.m */; };
@@ -28,7 +26,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1479A5621E3096B2002D491A /* ROUTP.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,7 +39,6 @@
 		1479A5681E30A001002D491A /* GKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKManager.m; sourceTree = "<group>"; };
 		1479A56A1E30AD6C002D491A /* SessionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionDetailViewController.h; sourceTree = "<group>"; };
 		1479A56B1E30AD6C002D491A /* SessionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionDetailViewController.m; sourceTree = "<group>"; };
-		14A8CBEE1E2E03F600A03108 /* ROUTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ROUTP.framework; path = "../../../Library/Developer/Xcode/DerivedData/build/Products/Debug-iphoneos/ROUTP.framework"; sourceTree = "<group>"; };
 		14ABAE451E1BAE380018FFE1 /* GKTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GKTester.entitlements; sourceTree = "<group>"; };
 		14ABAE481E1BAF240018FFE1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		14ABAE4A1E1BB0AF0018FFE1 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -61,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1479A5611E3096B2002D491A /* ROUTP.framework in Frameworks */,
 				14ABAE491E1BAF240018FFE1 /* GameKit.framework in Frameworks */,
 				14ABAE4B1E1BB0AF0018FFE1 /* CloudKit.framework in Frameworks */,
 			);
@@ -73,7 +68,6 @@
 		14ABAE471E1BAF240018FFE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				14A8CBEE1E2E03F600A03108 /* ROUTP.framework */,
 				14ABAE4A1E1BB0AF0018FFE1 /* CloudKit.framework */,
 				14ABAE481E1BAF240018FFE1 /* GameKit.framework */,
 			);

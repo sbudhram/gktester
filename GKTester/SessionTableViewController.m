@@ -25,6 +25,10 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [[GKManager sharedManager] reloadSessions];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
