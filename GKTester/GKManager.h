@@ -15,6 +15,7 @@
 
 @optional
 //Use to process the final data received from the sender, after ROUSessionManager has processed it.
+- (void)manager:(GKManager *)manager sessionDidUpdate:(GKGameSession*)session;
 - (void)manager:(GKManager *)manager didSignInPlayer:(GKCloudPlayer *)player;
 - (void)manager:(GKManager *)manager didLoadSessions:(NSArray <GKGameSession*> *)sessions;
 - (void)manager:(GKManager *)manager session:(GKGameSession*)session didAddPlayer:(GKCloudPlayer*)player;
@@ -26,7 +27,7 @@
 @interface GKManager : NSObject
 
 @property (nonatomic, copy) GKCloudPlayer *localPlayer;
-@property (nonatomic) NSArray <GKGameSession*> *sessions;
+@property (nonatomic) NSMutableArray <GKGameSession*> *sessions;
 
 + (GKManager*)sharedManager;
 

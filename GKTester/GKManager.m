@@ -71,9 +71,12 @@ static GKManager *sharedManager = NULL;
             NSLog(@"Error retrieving sessions: %@", error.description);
         }
         else {
-            
-            NSLog(@"Sessions: %@", sessions.description);
-            _sessions = sessions;
+            _sessions = [NSMutableArray arrayWithArray:sessions];
+            NSLog(@"Sessions:");
+            for (GKGameSession *session in _sessions) {
+                NSLog(@"%@", session.description);
+                NSLog(@"--players: %@", session.players.description);
+            }
             
             for (id<GKManagerDelegate> delegate in _delegates) {
                 if ([delegate respondsToSelector:@selector(manager:didLoadSessions:)])
@@ -95,7 +98,7 @@ static GKManager *sharedManager = NULL;
 - (void)createNewSessionWithCompletionHandler:(void(^)(GKGameSession *session, NSError *error))completionHandler {
 
     [GKGameSession createSessionInContainer:nil
-                                  withTitle:[NSString stringWithFormat:@"Session %lu", _sessions.count + 1]
+                                  withTitle:[NSString stringWithFormat:@"Session %lu - %@", _sessions.count + 1, _localPlayer.displayName]
                         maxConnectedPlayers:4
                           completionHandler:^(GKGameSession * _Nullable session, NSError * _Nullable error) {
                               if (error != nil) {
@@ -133,39 +136,54 @@ static GKManager *sharedManager = NULL;
 #pragma mark - GKGameSessionEventListener Delgate Methods
 - (void)session:(GKGameSession *)session
    didAddPlayer:(GKCloudPlayer *)player {
-    NSLog(@"GAME: Player added: %@  to session: %@", player.displayName, session.identifier);
-    
+    NSLog(@"GAME: Player added: %@, id:%@, to session: %@", player.displayName, player.playerID, session.identifier);
+
+    [self validateSession:session];
+
     for (id<GKManagerDelegate> delegate in _delegates) {
         if ([delegate respondsToSelector:@selector(manager:session:didAddPlayer:)])
             [delegate manager:self session:session didAddPlayer:player];
     }
-    
+
+
     //Reload our sessions, since we may have been added to one.
     [self reloadSessions];
+
 
 }
 
 - (void)session:(GKGameSession *)session
 didRemovePlayer:(GKCloudPlayer *)player {
-    NSLog(@"GAME: Player removed: %@  from session: %@", player.displayName, session.identifier);
+    NSLog(@"GAME: Player removed: %@ id:%@  from session: %@", player.displayName, player.playerID, session.identifier);
 
+    [self validateSession:session];
+    
+    if (_localPlayer == player) {
+        NSLog(@"GAME: WE were removed from this session!  Reloading sessions...");
+        [self reloadSessions];
+    }
+    
     for (id<GKManagerDelegate> delegate in _delegates) {
         if ([delegate respondsToSelector:@selector(manager:session:didRemovePlayer:)])
             [delegate manager:self session:session didRemovePlayer:player];
     }
+    
     
 }
 
 - (void)session:(GKGameSession *)session
          player:(GKCloudPlayer *)player
 didChangeConnectionState:(GKConnectionState)newState {
-    NSLog(@"GAME: Player: %@  Session: %@  Connection state changed: %d", player.description, session.identifier, (int)newState);
+    NSLog(@"GAME: Player: %@ id:%@ Session: %@  Connection state changed: %d", player.description, player.playerID, session.identifier, (int)newState);
     NSLog(@"GAME: Active Players: %@", [session playersWithConnectionState:GKConnectionStateConnected].description);
+
+    [self validateSession:session];
 
     for (id<GKManagerDelegate> delegate in _delegates) {
         if ([delegate respondsToSelector:@selector(manager:session:player:changedConnectionState:)])
             [delegate manager:self session:session player:player changedConnectionState:newState];
     }
+
 }
 
 - (void)session:(GKGameSession *)session
@@ -178,7 +196,14 @@ didReceiveMessage:(NSString *)message
 - (void)session:(GKGameSession *)session
  didReceiveData:(NSData *)data
      fromPlayer:(GKCloudPlayer *)player {
-    NSLog(@"GAME: Received data from Player: %@  Data: %@", player.displayName, [NSString stringWithUTF8String:[data bytes]]);
+    static int lastVal = -1;
+    NSString *strVal = [NSString stringWithUTF8String:[data bytes]];
+    int val = [strVal intValue];
+    if (val != lastVal + 1) {
+        NSLog(@"******************** VALUE SKIPPED *************************");
+    }
+    NSLog(@"GAME: Received data from Player: %@  Data: %@", player.displayName, strVal);
+    lastVal = val;
 }
 
 - (void)session:(GKGameSession *)session
@@ -187,7 +212,35 @@ didReceiveMessage:(NSString *)message
     NSLog(@"GAME: Player: %@  Session: %@  Saved Data: %@", player.displayName, session.identifier, [NSString stringWithUTF8String:[data bytes]] );
 }
 
+- (void)validateSession:(GKGameSession*)session {
+    for ( int i = 0; i < _sessions.count; i++) {
+        GKGameSession *curSession = _sessions[i];
+        if ([curSession.identifier isEqualToString:session.identifier]) {
+            //Ok, we've found a matching session.  Make sure the player counts are equal.
+            if (curSession.players.count != session.players.count ||
+                [curSession playersWithConnectionState:GKConnectionStateConnected].count != [session playersWithConnectionState:GKConnectionStateConnected].count)
+            {
+                NSLog(@"*** BUG *** Player counts not equal.");
+                NSLog(@"Old Session Players: %@", curSession.players.description);
+                NSLog(@"New Session Players: %@", session.players.description);
+                NSLog(@"Old Connected Players: %@", [curSession playersWithConnectionState:GKConnectionStateConnected].description);
+                NSLog(@"New Connected Players: %@", [session playersWithConnectionState:GKConnectionStateConnected].description);
 
+                //Swap out this session
+                NSLog(@"Swapping out session.");
+                [_sessions replaceObjectAtIndex:i withObject:session];
+                
+                for (id<GKManagerDelegate> delegate in _delegates) {
+                    if ([delegate respondsToSelector:@selector(manager:sessionDidUpdate:)])
+                        [delegate manager:self sessionDidUpdate:session];
+                }
+                
+                break;
+                
+            }
+        }
+    }
+}
 
 
 @end

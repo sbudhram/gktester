@@ -20,25 +20,6 @@ static int counter = 0;
 
 }
 
-
-- (void)sendData:(NSTimer*)timer {
-    
-//    NSArray *players = [_session playersWithConnectionState:GKConnectionStateConnected];
-//    if (players.count > 1) {
-//        NSString *sendString = [NSString stringWithFormat:@"%d", counter++];
-//        NSLog(@"Sending: %@", sendString);
-//        NSData *data = [sendString dataUsingEncoding:NSUTF8StringEncoding];
-//        [_session sendData:data withTransportType:GKTransportTypeReliable completionHandler:^(NSError * _Nullable error) {
-//            if (error) {
-//                NSLog(@"Send data error: %@", error.description);
-//            }
-//            else {
-//            }
-//        }];
-//    }
-}
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     return YES;
 }

@@ -17,6 +17,9 @@
 @property (nonatomic) IBOutlet UIButton *shareUrlButton;
 @property (nonatomic) IBOutlet UIButton *connectButton;
 @property (nonatomic) IBOutlet UIButton *removeButton;
+@property (nonatomic) IBOutlet UILabel *membersLabel;
+@property (nonatomic) IBOutlet UILabel *connectedLabel;
+
 
 @end
 
@@ -24,6 +27,7 @@
     GKGameSession *_session;
     NSURL *_shareUrl;
     BOOL _connected;
+    int _count;
 }
 
 - (void)setIdentifier:(NSString *)identifier {
@@ -35,6 +39,8 @@
         _identifierLabel.text = _session.identifier;
         NSLog(@"Session loaded.");
         
+        [self manager:nil sessionDidUpdate:_session];
+        
     }];
     
 }
@@ -44,6 +50,7 @@
     // Do any additional setup after loading the view.
     
     [[GKManager sharedManager] addObserver:self];
+    _count = 0;
     
 }
 
@@ -93,7 +100,7 @@
                 _connected = TRUE;
                 [_connectButton setTitle:@"Disconnect from Stream" forState:UIControlStateNormal];
                 
-                [self updateConnectedPlayers];
+                [self manager:nil sessionDidUpdate:_session];
                 
             }
         }];
@@ -108,31 +115,85 @@
                 NSLog(@"Session disconnected.");
                 _connected = FALSE;
                 [_connectButton setTitle:@"Connect to Stream" forState:UIControlStateNormal];
+
+                [self manager:nil sessionDidUpdate:_session];
             }
         }];
     }
     
 }
 
-- (void)updateConnectedPlayers {
+- (IBAction)sendTestData {
+    NSString *msg = [NSString stringWithFormat:@"%d", _count++];
+    NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"Sending: %@", msg);
+    [_session sendData:data withTransportType:GKTransportTypeReliable completionHandler:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"ERROR: %@", error.description);
+        }
+    }];
+}
 
-    NSArray *players = [_session playersWithConnectionState:GKConnectionStateConnected];
-    NSLog(@"DetailView: Connected Players: %@", players);
+- (IBAction)sendTestData60 {
+    
+    //Send 60 messages in a row
+    double timer = 0.0;
+    for (int i = 0; i < 60; i++) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timer * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self sendTestData];
+        });
+        timer += .1;
+    }
+    
+}
 
+- (IBAction)sendTestDataUDP {
+    NSString *msg = [NSString stringWithFormat:@"%d", _count++];
+    NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"Sending: %@", msg);
+    [_session sendData:data withTransportType:GKTransportTypeUnreliable completionHandler:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"ERROR: %@", error.description);
+        }
+    }];
+}
+
+- (IBAction)sendTestData60UDP {
+    
+    //Send 60 messages in a row
+    double timer = 0.0;
+    for (int i = 0; i < 60; i++) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timer * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self sendTestDataUDP];
+        });
+        timer += .1;
+    }
+    
+}
+
+- (void)manager:(GKManager *)manager sessionDidUpdate:(GKGameSession *)session {
+    if ([_session.identifier isEqualToString:session.identifier]) {
+        _session = session;
+        _membersLabel.text = [self mapPlayersToString:_session.players];
+        _connectedLabel.text = [self mapPlayersToString:[session playersWithConnectionState:GKConnectionStateConnected]];
+    }
+}
+
+- (NSString*)mapPlayersToString:(NSArray<GKCloudPlayer*>*)array {
+    NSMutableArray *ids = [NSMutableArray arrayWithCapacity:3];
+    for (GKCloudPlayer *player in array) {
+        [ids addObject:player.playerID];
+    }
+    return [ids componentsJoinedByString:@",\n"];
 }
 
 - (void)manager:(GKManager *)manager session:(GKGameSession *)session didAddPlayer:(GKCloudPlayer *)player {
-    _session = session;
-    [self updateConnectedPlayers];
 }
 
 - (void)manager:(GKManager *)manager session:(GKGameSession *)session didRemovePlayer:(GKCloudPlayer *)player {
-    _session = session;
-    [self updateConnectedPlayers];
 }
 
 - (void)manager:(GKManager *)manager session:(GKGameSession *)session player:(GKCloudPlayer *)player changedConnectionState:(GKConnectionState)state {
-    [self updateConnectedPlayers];
 }
 
 /*
