@@ -99,7 +99,6 @@
             else {
                 NSLog(@"Session connected.");
                 _connected = TRUE;
-                [_connectButton setTitle:@"Disconnect from Stream" forState:UIControlStateNormal];
                 
                 [self manager:nil sessionDidUpdate:_session];
                 
@@ -115,7 +114,6 @@
             else {
                 NSLog(@"Session disconnected.");
                 _connected = FALSE;
-                [_connectButton setTitle:@"Connect to Stream" forState:UIControlStateNormal];
 
                 [self manager:nil sessionDidUpdate:_session];
             }
@@ -178,6 +176,14 @@
         _identifierLabel.text = _session.identifier;
         _membersLabel.text = [self mapPlayersToString:_session.players];
         _connectedLabel.text = [self mapPlayersToString:[session playersWithConnectionState:GKConnectionStateConnected]];
+        
+        if ([[_session playersWithConnectionState:GKConnectionStateConnected] containsObject:[GKManager sharedManager].localPlayer]) {
+            [_connectButton setTitle:@"Disconnect From Stream" forState:UIControlStateNormal];
+        }
+        else {
+            [_connectButton setTitle:@"Connect to Stream" forState:UIControlStateNormal];
+        }
+    
     }
 }
 

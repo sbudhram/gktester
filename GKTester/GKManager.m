@@ -240,8 +240,8 @@ didReceiveMessage:(NSString *)message
         GKGameSession *curSession = _sessions[i];
         if ([curSession.identifier isEqualToString:session.identifier]) {
             //Ok, we've found a matching session.  Make sure the player counts are equal.
-            if (curSession.players.count != session.players.count ||
-                [curSession playersWithConnectionState:GKConnectionStateConnected].count != [session playersWithConnectionState:GKConnectionStateConnected].count)
+            if (curSession.players != session.players ||
+                [curSession playersWithConnectionState:GKConnectionStateConnected] != [session playersWithConnectionState:GKConnectionStateConnected])
             {
                 NSLog(@"*** BUG *** Player counts not equal.");
                 NSLog(@"Old Session Players: %@", curSession.players.description);
