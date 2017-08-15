@@ -118,6 +118,29 @@ static GKManager *sharedManager = NULL;
                           }];
 }
 
+- (void)loadSessionWithIdentifier:(NSString*)identifier withCompletionHandler:(void(^)(GKGameSession *session, NSError *error))completionHandler {
+    
+    [GKGameSession loadSessionWithIdentifier:identifier completionHandler:^(GKGameSession *session, NSError * _Nullable error) {
+        if (!error) {
+            if (completionHandler) {
+                
+                for (id<GKManagerDelegate> delegate in _delegates) {
+                    if ([delegate respondsToSelector:@selector(manager:sessionDidUpdate:)])
+                        [delegate manager:self sessionDidUpdate:session];
+                }
+
+                completionHandler(session, error);
+            }
+        }
+        else {
+            if (completionHandler) {
+                completionHandler(nil, error);
+            }
+        }
+    }];
+    
+}
+
 - (void)removeSessionWithIdentifier:(NSString*)identifier withCompletionHandler:(void(^)(NSError *error))completionHandler {
     
     [GKGameSession removeSessionWithIdentifier:identifier completionHandler:^(NSError * _Nullable error) {

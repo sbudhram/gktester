@@ -33,16 +33,7 @@
 - (void)setIdentifier:(NSString *)identifier {
 
     _identifier = identifier;
-    
-    [GKGameSession loadSessionWithIdentifier:identifier completionHandler:^(GKGameSession * _Nullable session, NSError * _Nullable error) {
-        _session = session;
-        _identifierLabel.text = _session.identifier;
-        NSLog(@"Session loaded.");
-        
-        [self manager:nil sessionDidUpdate:_session];
-        
-    }];
-    
+    [self refreshSession];
 }
 
 - (void)viewDidLoad {
@@ -61,6 +52,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)refreshSession {
+    
+    [[GKManager sharedManager] loadSessionWithIdentifier:_identifier withCompletionHandler:^(GKGameSession *session, NSError *error) {
+        if (!error) {
+            NSLog(@"Session loaded.");
+            [self manager:nil sessionDidUpdate:session];
+        }
+    }];
 }
 
 - (IBAction)shareUrl:(id)sender {
@@ -172,8 +173,9 @@
 }
 
 - (void)manager:(GKManager *)manager sessionDidUpdate:(GKGameSession *)session {
-    if ([_session.identifier isEqualToString:session.identifier]) {
+    if ([session.identifier isEqualToString:_identifier]) {
         _session = session;
+        _identifierLabel.text = _session.identifier;
         _membersLabel.text = [self mapPlayersToString:_session.players];
         _connectedLabel.text = [self mapPlayersToString:[session playersWithConnectionState:GKConnectionStateConnected]];
     }

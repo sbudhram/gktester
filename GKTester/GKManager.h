@@ -36,5 +36,6 @@
 
 - (void)reloadSessions;
 - (void)createNewSessionWithCompletionHandler:(void(^)(GKGameSession *session, NSError *error))completionHandler;
+- (void)loadSessionWithIdentifier:(NSString*)identifier withCompletionHandler:(void(^)(GKGameSession *session, NSError *error))completionHandler;
 - (void)removeSessionWithIdentifier:(NSString*)identifier withCompletionHandler:(void(^)(NSError *error))completionHandler;
 @end

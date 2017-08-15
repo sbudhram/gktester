@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="e4w-xT-Bpg">
-                                        <rect key="frame" x="0.0" y="0.0" width="312" height="514"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="312" height="554"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identifier:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nls-l0-9Ij">
                                                 <rect key="frame" x="0.0" y="0.0" width="312" height="20.5"/>
@@ -108,61 +108,68 @@
                                                     <action selector="removeSession:" destination="Xxz-sy-kHn" eventType="touchUpInside" id="ots-te-Deu"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAa-Ou-i8H">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAJ-kC-VUF">
                                                 <rect key="frame" x="0.0" y="202" width="312" height="30"/>
+                                                <state key="normal" title="Refresh Session Instance"/>
+                                                <connections>
+                                                    <action selector="refreshSession" destination="Xxz-sy-kHn" eventType="touchUpInside" id="ipB-6p-VHb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAa-Ou-i8H">
+                                                <rect key="frame" x="0.0" y="242" width="312" height="30"/>
                                                 <state key="normal" title="Connect to Stream"/>
                                                 <connections>
                                                     <action selector="connectToStream:" destination="Xxz-sy-kHn" eventType="touchUpInside" id="N2u-9v-Gz1"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oT-Ds-bAE">
-                                                <rect key="frame" x="0.0" y="242" width="312" height="30"/>
+                                                <rect key="frame" x="0.0" y="282" width="312" height="30"/>
                                                 <state key="normal" title="Send Packet to Connected Players (TCP)"/>
                                                 <connections>
                                                     <action selector="sendTestData" destination="Xxz-sy-kHn" eventType="touchUpInside" id="v1G-wY-9G5"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-dt-PCe">
-                                                <rect key="frame" x="0.0" y="282" width="312" height="30"/>
+                                                <rect key="frame" x="0.0" y="322" width="312" height="30"/>
                                                 <state key="normal" title="Send 60 Packets to Connected Players (TCP)"/>
                                                 <connections>
                                                     <action selector="sendTestData60" destination="Xxz-sy-kHn" eventType="touchUpInside" id="ZZF-NK-qJ3"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZt-rR-Ppz">
-                                                <rect key="frame" x="0.0" y="322" width="312" height="30"/>
+                                                <rect key="frame" x="0.0" y="362" width="312" height="30"/>
                                                 <state key="normal" title="Send Packet to Connected Players (UDP)"/>
                                                 <connections>
                                                     <action selector="sendTestDataUDP" destination="Xxz-sy-kHn" eventType="touchUpInside" id="H6Q-gU-H31"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UH4-5n-QQ8">
-                                                <rect key="frame" x="0.0" y="362" width="312" height="30"/>
+                                                <rect key="frame" x="0.0" y="402" width="312" height="30"/>
                                                 <state key="normal" title="Send 60 Packets to Connected Players (UDP)"/>
                                                 <connections>
                                                     <action selector="sendTestData60UDP" destination="Xxz-sy-kHn" eventType="touchUpInside" id="nwb-Dx-kHh"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Members:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHU-dQ-UAH">
-                                                <rect key="frame" x="0.0" y="402" width="312" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="442" width="312" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="0nq-fU-MMC">
-                                                <rect key="frame" x="0.0" y="432.5" width="312" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="472.5" width="312" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IT3-Uh-a0a">
-                                                <rect key="frame" x="0.0" y="463" width="312" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="503" width="312" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="Hde-Mb-E6v">
-                                                <rect key="frame" x="0.0" y="493.5" width="312" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="533.5" width="312" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
